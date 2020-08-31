@@ -1,0 +1,67 @@
+{
+	"name": "coffeephp/json",
+	"description": "Provides classes for handling JSON data.",
+	"license": "Apache-2.0",
+	"authors": [
+		{
+			"name": "Danny Damsky",
+			"email": "dannydamsky99@gmail.com"
+		}
+	],
+	"keywords": [
+		"coffeephp",
+		"coffee",
+		"php",
+		"serialized",
+		"php-serialized",
+		"binary",
+		"json",
+		"translator",
+		"serialize",
+		"unserialize",
+		"deserialize",
+		"serialization",
+		"unserialization",
+		"deserialization"
+	],
+	"require": {
+		"php": ">=7.4",
+		"ext-apcu": "*",
+		"ext-json": "*",
+		"coffeephp/edi": "1.*"
+	},
+	"require-dev": {
+		"roave/security-advisories": "dev-master",
+		"coffeephp/component-registry": "1.*",
+		"phpunit/phpunit": "9.*"
+	},
+	"autoload": {
+		"psr-4": {
+			"CoffeePhp\\Json\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"CoffeePhp\\Json\\Test\\Integration\\": "test/Integration/",
+			"CoffeePhp\\Json\\Test\\Unit\\": "test/Unit/"
+		}
+	},
+	"suggest": {
+		"coffeephp/component-registry": "For integration of the component with the CoffeePHP framework.",
+		"coffeephp/binary": "For the serializer interfaces to be bound to the PHP-serialized implementation."
+	},
+	"config": {
+		"sort-packages": true,
+		"optimize-autoloader": true,
+		"apcu-autoloader": true
+	},
+	"extra": {
+		"coffeephp": {
+			"registry": [
+				{
+					"registrar": "CoffeePhp\\Json\\Integration\\JsonComponentRegistrar"
+				}
+			]
+		}
+	}
+}
