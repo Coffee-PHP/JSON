@@ -25,7 +25,6 @@ declare(strict_types=1);
 
 namespace CoffeePhp\Json\Integration;
 
-
 use CoffeePhp\Di\Contract\ContainerInterface;
 use CoffeePhp\Json\Contract\JsonTranslatorInterface;
 use CoffeePhp\Json\JsonTranslator;

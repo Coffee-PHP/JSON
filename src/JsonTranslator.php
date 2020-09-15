@@ -21,10 +21,9 @@
  * @since 2020-08-07
  */
 
-declare (strict_types=1);
+declare(strict_types=1);
 
 namespace CoffeePhp\Json;
-
 
 use CoffeePhp\Json\Contract\JsonTranslatorInterface;
 use CoffeePhp\Json\Exception\JsonSerializeException;
@@ -75,11 +74,11 @@ final class JsonTranslator implements JsonTranslatorInterface
     public function serializeArray(array $array): string
     {
         try {
-            return json_encode($array, $this->flags);
+            return (string)json_encode($array, $this->flags);
         } catch (Throwable $e) {
             throw new JsonSerializeException(
                 "Failed to serialize array into JSON: {$e->getMessage()}",
-                $e->getCode(),
+                (int)$e->getCode(),
                 $e
             );
         }
@@ -91,11 +90,11 @@ final class JsonTranslator implements JsonTranslatorInterface
     public function unserializeArray(string $string): array
     {
         try {
-            return json_decode($string, true, $this->depth, $this->flags);
+            return (array)json_decode($string, true, $this->depth, $this->flags);
         } catch (Throwable $e) {
             throw new JsonUnserializeException(
                 "Failed to unserialize JSON string into array: {$e->getMessage()} ; string: $string",
-                $e->getCode(),
+                (int)$e->getCode(),
                 $e
             );
         }
@@ -107,11 +106,11 @@ final class JsonTranslator implements JsonTranslatorInterface
     public function serializeObject(object $class): string
     {
         try {
-            return json_encode($class, $this->flags);
+            return (string)json_encode($class, $this->flags);
         } catch (Throwable $e) {
             throw new JsonSerializeException(
                 "Failed to serialize class into JSON: {$e->getMessage()}",
-                $e->getCode(),
+                (int)$e->getCode(),
                 $e
             );
         }
