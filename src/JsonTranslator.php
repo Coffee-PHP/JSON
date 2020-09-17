@@ -34,6 +34,8 @@ use function json_decode;
 use function json_encode;
 
 use const JSON_THROW_ON_ERROR;
+use const JSON_UNESCAPED_SLASHES;
+use const JSON_UNESCAPED_UNICODE;
 
 /**
  * Class JsonTranslator
@@ -62,7 +64,7 @@ final class JsonTranslator implements JsonTranslatorInterface
      * @param int $depth The depth to specify for the {@see json_decode()} function.
      * @param int $flags JSON flags.
      */
-    public function __construct(int $depth = 512, int $flags = 0)
+    public function __construct(int $depth = 512, int $flags = JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
     {
         $this->depth = $depth;
         $this->flags = JSON_THROW_ON_ERROR | $flags;
