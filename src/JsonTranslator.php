@@ -117,4 +117,20 @@ final class JsonTranslator implements JsonTranslatorInterface
             );
         }
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function unserializeObject(string $string): object
+    {
+        try {
+            return (object)json_decode($string, false, $this->depth, $this->flags);
+        } catch (Throwable $e) {
+            throw new JsonUnserializeException(
+                "Failed to unserialize JSON string into object: {$e->getMessage()} ; string: $string",
+                (int)$e->getCode(),
+                $e
+            );
+        }
+    }
 }

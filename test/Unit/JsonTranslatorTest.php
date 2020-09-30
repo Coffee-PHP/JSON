@@ -33,6 +33,7 @@ use PHPUnit\Framework\TestCase;
 use stdClass;
 
 use function json_encode;
+use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertSame;
 
 /**
@@ -47,8 +48,8 @@ class JsonTranslatorTest extends TestCase
 {
     /**
      * @throws JsonException
-     * @see JsonTranslatorInterface::unserializeArray()
-     * @see JsonTranslatorInterface::serializeArray()
+     * @see JsonTranslator::unserializeArray()
+     * @see JsonTranslator::serializeArray()
      */
     public function testSerializeAndUnserializeArray(): void
     {
@@ -80,9 +81,10 @@ class JsonTranslatorTest extends TestCase
 
     /**
      * @throws JsonException
-     * @see JsonTranslatorInterface::serializeObject()
+     * @see JsonTranslator::serializeObject()
+     * @see JsonTranslator::unserializeObject()
      */
-    public function testSerializeObject(): void
+    public function testSerializeAndUnserializeObject(): void
     {
         $class = new stdClass();
         $class->a = 'b';
@@ -114,6 +116,11 @@ class JsonTranslatorTest extends TestCase
         assertSame(
             $instance->unserializeArray($serialized),
             $array
+        );
+
+        assertEquals(
+            $class,
+            $instance->unserializeObject($serialized)
         );
     }
 

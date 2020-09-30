@@ -25,7 +25,7 @@ declare(strict_types=1);
 
 namespace CoffeePhp\Json\Contract;
 
-use CoffeePhp\Edi\Contract\EdiExtendedArrayTranslatorInterface;
+use CoffeePhp\Edi\Contract\EdiTranslatorInterface;
 
 /**
  * Interface JsonTranslatorInterface
@@ -33,6 +33,6 @@ use CoffeePhp\Edi\Contract\EdiExtendedArrayTranslatorInterface;
  * @since 2020-07-16
  * @author Danny Damsky <dannydamsky99@gmail.com>
  */
-interface JsonTranslatorInterface extends EdiExtendedArrayTranslatorInterface
+interface JsonTranslatorInterface extends EdiTranslatorInterface
 {
 }
