@@ -91,7 +91,7 @@ final class JsonTranslator implements JsonTranslatorInterface
             return (array)json_decode($string, true, $this->depth, $this->flags);
         } catch (Throwable $e) {
             throw new JsonUnserializeException(
-                "Failed to unserialize JSON string into array: {$e->getMessage()} ; string: $string",
+                "Failed to unserialize JSON string into array: {$e->getMessage()}",
                 (int)$e->getCode(),
                 $e
             );
@@ -123,7 +123,7 @@ final class JsonTranslator implements JsonTranslatorInterface
             return (object)json_decode($string, false, $this->depth, $this->flags);
         } catch (Throwable $e) {
             throw new JsonUnserializeException(
-                "Failed to unserialize JSON string into object: {$e->getMessage()} ; string: $string",
+                "Failed to unserialize JSON string into object: {$e->getMessage()}",
                 (int)$e->getCode(),
                 $e
             );
