@@ -1,5 +1,7 @@
 # Coffee PHP - JSON
 
+![Build](https://github.com/Coffee-PHP/JSON/workflows/Build/badge.svg)
+
 Provides classes for handling JSON data.
 
 ```

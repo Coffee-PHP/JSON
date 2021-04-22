@@ -47,15 +47,11 @@ final class JsonTranslator implements JsonTranslatorInterface
 {
     /**
      * The depth to specify for the {@see json_decode()} function.
-     *
-     * @var int
      */
     private int $depth;
 
     /**
      * JSON flags.
-     *
-     * @var int
      */
     private int $flags;
 
@@ -76,7 +72,7 @@ final class JsonTranslator implements JsonTranslatorInterface
     public function serializeArray(array $array): string
     {
         try {
-            return (string)json_encode($array, $this->flags);
+            return (string)json_encode($array, $this->flags, $this->depth);
         } catch (Throwable $e) {
             throw new JsonSerializeException(
                 "Failed to serialize array into JSON: {$e->getMessage()}",
@@ -108,7 +104,7 @@ final class JsonTranslator implements JsonTranslatorInterface
     public function serializeObject(object $class): string
     {
         try {
-            return (string)json_encode($class, $this->flags);
+            return (string)json_encode($class, $this->flags, $this->depth);
         } catch (Throwable $e) {
             throw new JsonSerializeException(
                 "Failed to serialize class into JSON: {$e->getMessage()}",

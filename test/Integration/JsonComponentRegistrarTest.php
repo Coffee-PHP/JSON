@@ -26,6 +26,7 @@ declare (strict_types=1);
 namespace CoffeePhp\Json\Test\Integration;
 
 
+use CoffeePhp\ComponentRegistry\ComponentRegistry;
 use CoffeePhp\Di\Container;
 use CoffeePhp\Json\Contract\JsonTranslatorInterface;
 use CoffeePhp\Json\Integration\JsonComponentRegistrar;
@@ -51,8 +52,8 @@ final class JsonComponentRegistrarTest extends TestCase
     public function testRegister(): void
     {
         $di = new Container();
-        $registrar = new JsonComponentRegistrar();
-        $registrar->register($di);
+        $registry = new ComponentRegistry($di);
+        $registry->register(JsonComponentRegistrar::class);
 
         assertTrue(
             $di->has(JsonTranslatorInterface::class)

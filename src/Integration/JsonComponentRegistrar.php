@@ -25,10 +25,10 @@ declare(strict_types=1);
 
 namespace CoffeePhp\Json\Integration;
 
+use CoffeePhp\ComponentRegistry\Contract\ComponentRegistrarInterface;
 use CoffeePhp\Di\Contract\ContainerInterface;
 use CoffeePhp\Json\Contract\JsonTranslatorInterface;
 use CoffeePhp\Json\JsonTranslator;
-use CoffeePhp\ComponentRegistry\Contract\ComponentRegistrarInterface;
 
 /**
  * Class JsonComponentRegistrar
@@ -38,13 +38,19 @@ use CoffeePhp\ComponentRegistry\Contract\ComponentRegistrarInterface;
  */
 final class JsonComponentRegistrar implements ComponentRegistrarInterface
 {
+    /**
+     * JsonComponentRegistrar constructor.
+     */
+    public function __construct(private ContainerInterface $di)
+    {
+    }
 
     /**
      * @inheritDoc
      */
-    public function register(ContainerInterface $di): void
+    public function register(): void
     {
-        $di->bind(JsonTranslatorInterface::class, JsonTranslator::class);
-        $di->bind(JsonTranslator::class, JsonTranslator::class);
+        $this->di->bind(JsonTranslator::class, JsonTranslator::class);
+        $this->di->bind(JsonTranslatorInterface::class, JsonTranslator::class);
     }
 }
