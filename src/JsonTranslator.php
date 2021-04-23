@@ -74,11 +74,7 @@ final class JsonTranslator implements JsonTranslatorInterface
         try {
             return (string)json_encode($array, $this->flags, $this->depth);
         } catch (Throwable $e) {
-            throw new JsonSerializeException(
-                "Failed to serialize array into JSON: {$e->getMessage()}",
-                (int)$e->getCode(),
-                $e
-            );
+            throw new JsonSerializeException($e->getMessage(), (int)$e->getCode(), $e);
         }
     }
 
@@ -90,27 +86,19 @@ final class JsonTranslator implements JsonTranslatorInterface
         try {
             return (array)json_decode($string, true, $this->depth, $this->flags);
         } catch (Throwable $e) {
-            throw new JsonUnserializeException(
-                "Failed to unserialize JSON string into array: {$e->getMessage()}",
-                (int)$e->getCode(),
-                $e
-            );
+            throw new JsonUnserializeException($e->getMessage(), (int)$e->getCode(), $e);
         }
     }
 
     /**
      * @inheritDoc
      */
-    public function serializeObject(object $class): string
+    public function serializeObject(object $object): string
     {
         try {
-            return (string)json_encode($class, $this->flags, $this->depth);
+            return (string)json_encode($object, $this->flags, $this->depth);
         } catch (Throwable $e) {
-            throw new JsonSerializeException(
-                "Failed to serialize class into JSON: {$e->getMessage()}",
-                (int)$e->getCode(),
-                $e
-            );
+            throw new JsonSerializeException($e->getMessage(), (int)$e->getCode(), $e);
         }
     }
 
@@ -122,11 +110,7 @@ final class JsonTranslator implements JsonTranslatorInterface
         try {
             return (object)json_decode($string, false, $this->depth, $this->flags);
         } catch (Throwable $e) {
-            throw new JsonUnserializeException(
-                "Failed to unserialize JSON string into object: {$e->getMessage()}",
-                (int)$e->getCode(),
-                $e
-            );
+            throw new JsonUnserializeException($e->getMessage(), (int)$e->getCode(), $e);
         }
     }
 }
